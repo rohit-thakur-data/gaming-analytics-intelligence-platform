@@ -1,0 +1,43 @@
+========================================
+DATA QUALITY REPORT
+Gaming Analysis Platform
+========================================
+
+Dataset:
+player_statistics
+
+Total Rows:
+40034
+
+Total Columns:
+13
+
+Missing Values:
+0
+Duplicate Rows:
+0
+
+Unique Player IDs:
+40034
+
+InGamePurchases Values:
+[0, 1]
+
+Age Range:
+[15 - 49]
+
+Playtime Range:
+[0.0 - 24.0]
+
+Sessions Range:
+[0 - 19]
+
+Data Quality Summary:
+The dataset contains 40,034 player records.
+No missing values or duplicate rows were
+identified during the initial inspection.
+
+PlayerID values are unique, and the
+InGamePurchases column contains binary
+values representing whether a player made
+an in-game purchase.

@@ -1,0 +1,39 @@
+GAMING PLAYER ANALYTICS
+============================================
+
+PROJECT OBJECTIVE
+
+Analyze gaming player behavior to understand
+player demographics, engagement, gameplay behavior,
+and in-game purchasing patterns.
+
+BUSINESS PROBLEM
+
+A gaming company wants to understand how players
+behave and which player/game characteristics are
+associated with higher engagement and purchases.
+
+TOOLS
+
+Excel
+SQL / MySQL
+Python / Pandas
+Power BI
+Streamlit
+
+MAIN AREAS OF ANALYSIS
+
+1. Player Demographics
+2. Game Preferences
+3. Player Engagement
+4. Gameplay Behavior
+5. In-Game Purchases
+
+FINAL OUTPUTS
+
+1. Cleaned dataset
+2. SQL analysis
+3. Python analysis
+4. Power BI dashboard
+5. Streamlit application
+6. Business insights report

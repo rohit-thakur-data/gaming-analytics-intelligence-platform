@@ -1,0 +1,320 @@
+-- ============================================
+-- Gaming Analytics Platform
+-- SQL Business Analysis
+-- ============================================
+
+-- SECTION 1: Database Verification
+-- SECTION 2: Basic Exploration
+-- SECTION 3: Player Analysis
+-- SECTION 4: Engagement Analysis
+-- SECTION 5: Purchase Analysis
+-- SECTION 6: Genre Analysis
+-- SECTION 7: Difficulty Analysis
+-- SECTION 8: Advanced SQL Techniques
+
+-- ============================================
+-- SECTION 1: Database Verification
+-- Before analysis, always check your data.
+-- ============================================
+
+-- Query 1: Verify the data import
+-- Business Question: Did my data import correctly?
+SELECT COUNT(DISTINCT PlayerID) AS TotalPlayers
+FROM player_statistics;
+
+-- Expected result: 40,034 players.
+
+-- Query 2: Preview the first few rows
+-- Purpose: Check the data, verify columns, and look for mistakes.
+SELECT *
+FROM player_statistics
+LIMIT 10;
+
+-- Query 3: Check the table structure
+-- Purpose: Confirm data types, the primary key, and column names.
+DESCRIBE player_statistics;
+
+-- ============================================
+-- SECTION 2: Basic Exploration
+-- ============================================
+
+-- Query 4: Player count by gender
+-- Business Question: How many male and female players are there?
+SELECT
+    Gender,
+    COUNT(DISTINCT PlayerID) AS TotalPlayers
+FROM player_statistics
+GROUP BY Gender;
+
+-- Explanation: COUNT(*) counts rows; GROUP BY Gender creates one result per gender.
+-- Example result:
+-- Gender | TotalPlayers
+-- Male   | 19,980
+-- Female | 20,054
+
+-- Query 5: Player count by location
+-- Business Question: How many players come from each location?
+SELECT
+    Location,
+    COUNT(DISTINCT PlayerID) AS Players
+FROM player_statistics
+GROUP BY Location
+ORDER BY Players DESC;
+
+-- Example result:
+-- Location | Players
+-- USA      | 7,000
+-- India    | 6,500
+-- UK       | 5,800
+-- Business Insight: The USA has the largest player base.
+
+-- Query 6: Player count by game genre
+-- Business Question: Which game genres are most popular?
+SELECT
+    GameGenre,
+    COUNT(DISTINCT PlayerID) AS Players
+FROM player_statistics
+GROUP BY GameGenre
+ORDER BY Players DESC;
+
+-- Business Insight: RPG has the highest number of players.
+
+-- ============================================
+-- SECTION 3: Player Analysis
+-- ============================================
+
+-- Query 7: Average player age
+SELECT
+    ROUND(AVG(Age), 2) AS AverageAge
+FROM player_statistics;
+
+-- ROUND converts a value such as 28.4739473 into the cleaner value 28.47.
+
+-- Query 8: Youngest player
+SELECT
+    MIN(Age) AS YoungestPlayer
+FROM player_statistics;
+
+-- Query 9: Oldest player
+SELECT
+    MAX(Age) AS OldestPlayer
+FROM player_statistics;
+
+-- Query 10: Average player level
+SELECT
+    ROUND(AVG(PlayerLevel), 2) AS AverageLevel
+FROM player_statistics;
+
+-- ============================================
+-- SECTION 4: Engagement Analysis
+-- EngagementLevel values: Low, Medium, and High.
+-- ============================================
+
+-- Query 11: Player count by engagement level
+-- Business Question: How many players belong to each engagement level?
+SELECT
+    EngagementLevel,
+    COUNT(*) AS Players
+FROM player_statistics
+GROUP BY EngagementLevel;
+
+-- Example result:
+-- Engagement | Players
+-- High       | 15,000
+-- Medium     | 18,000
+-- Low        | 7,000
+-- Business Insight: Most players have Medium engagement.
+
+-- Query 12: Average play time
+SELECT
+    ROUND(AVG(PlayTimeHours), 2) AS AveragePlayTime
+FROM player_statistics;
+
+-- Query 13: Average sessions per week
+SELECT
+    ROUND(AVG(SessionsPerWeek), 2) AS AvgSessions
+FROM player_statistics;
+
+-- ============================================
+-- SECTION 5: Purchase Analysis
+-- InGamePurchases values: 0 = did not purchase, 1 = purchased.
+-- ============================================
+
+-- Query 14: Number of purchasing players
+-- Business Question: How many players made an in-game purchase?
+SELECT
+    SUM(InGamePurchases) AS PurchasingPlayers
+FROM player_statistics;
+
+-- Explanation: Summing binary values such as 1 + 1 + 1 + 0 + 0 + 1 counts purchasers.
+
+-- Query 15: Purchase rate
+-- Business Question: What percentage of players made an in-game purchase?
+SELECT
+    ROUND(
+        SUM(InGamePurchases) / COUNT(*) * 100,
+        2
+    ) AS PurchaseRate
+FROM player_statistics;
+
+-- Example output: 42.75, meaning 42.75% of players purchased something.
+-- This is also called a conversion rate, an important gaming KPI.
+
+-- ============================================
+-- SECTION 6: Genre Analysis
+-- ============================================
+
+-- Query 16: Purchase rate by genre
+SELECT
+    GameGenre,
+    ROUND(AVG(InGamePurchases) * 100, 2) AS PurchaseRate
+FROM player_statistics
+GROUP BY GameGenre
+ORDER BY PurchaseRate DESC;
+
+-- Explanation: For binary purchase values, AVG(InGamePurchases) gives the purchase
+-- proportion. Multiplying by 100 expresses it as a percentage.
+
+-- ============================================
+-- SECTION 7: Difficulty Analysis
+-- ============================================
+
+-- Query 17: Average playtime by difficulty
+-- Business Question: Do players spend more time on Easy, Medium, or Hard?
+SELECT
+    GameDifficulty,
+    ROUND(AVG(PlayTimeHours), 2) AS AvgPlayTime
+FROM player_statistics
+GROUP BY GameDifficulty;
+
+-- ============================================
+-- SECTION 8: Advanced SQL Filters
+-- Topics: WHERE, AND, OR, BETWEEN, IN, LIKE, ORDER BY, LIMIT, HAVING, and CASE.
+-- SQL execution order used in these examples:
+-- SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT
+-- ============================================
+
+-- PART 1: WHERE
+-- WHERE filters rows. Examples include players from India, female players,
+-- high-engagement players, or players over 30 years old.
+
+-- Example 1: Players from India
+-- Business Question: Show all players from India.
+SELECT *
+FROM player_statistics
+WHERE Location = 'India';
+
+-- Example 2: High-engagement players
+SELECT *
+FROM player_statistics
+WHERE EngagementLevel = 'High';
+
+-- Example 3: Female players
+SELECT *
+FROM player_statistics
+WHERE Gender = 'Female';
+
+-- PART 2: AND
+-- Business Question: Show female players from India.
+-- AND requires both conditions to be true.
+SELECT *
+FROM player_statistics
+WHERE Gender = 'Female'
+  AND Location = 'India';
+
+-- PART 3: OR
+-- Business Question: Show players from India or the USA.
+-- OR requires at least one condition to be true.
+SELECT *
+FROM player_statistics
+WHERE Location = 'India'
+   OR Location = 'USA';
+
+-- PART 4: BETWEEN
+-- Business Question: Show players aged 20 through 30.
+SELECT *
+FROM player_statistics
+WHERE Age BETWEEN 20 AND 30;
+
+-- BETWEEN is equivalent to Age >= 20 AND Age <= 30.
+
+-- PART 5: IN
+-- IN is a concise alternative to multiple OR conditions.
+SELECT *
+FROM player_statistics
+WHERE Location IN ('India', 'USA', 'Canada');
+
+-- PART 6: LIKE
+-- LIKE searches for text patterns. '%' means any number of characters.
+-- Example: locations beginning with I, such as India, Indonesia, or Ireland.
+SELECT *
+FROM player_statistics
+WHERE Location LIKE 'I%';
+
+-- Example pattern: a value ending in "tion", such as Action or Simulation.
+SELECT *
+FROM player_statistics
+WHERE GameGenre LIKE '%tion';
+
+-- PART 7: ORDER BY
+-- Business Question: Who has the highest player level?
+SELECT
+    PlayerID,
+    PlayerLevel
+FROM player_statistics
+ORDER BY PlayerLevel DESC;
+
+-- DESC sorts from highest to lowest; ASC sorts from lowest to highest.
+
+-- PART 8: LIMIT
+-- Business Question: Show only the top 10 players.
+SELECT
+    PlayerID,
+    PlayerLevel
+FROM player_statistics
+ORDER BY PlayerLevel DESC
+LIMIT 10;
+
+-- PART 9: HAVING
+-- WHERE filters rows, while HAVING filters grouped results.
+-- Business Question: Show locations with more than 5,000 players.
+SELECT
+    Location,
+    COUNT(*) AS Players
+FROM player_statistics
+GROUP BY Location
+HAVING COUNT(*) > 5000;
+
+-- PART 10: CASE
+-- CASE creates new categories.
+-- Business Question: Group players into Young (18-24), Adult (25-34), and Senior (35+).
+SELECT
+    PlayerID,
+    Age,
+    CASE
+        WHEN Age BETWEEN 18 AND 24 THEN 'Young'
+        WHEN Age BETWEEN 25 AND 34 THEN 'Adult'
+        ELSE 'Senior'
+    END AS AgeGroup
+FROM player_statistics;
+
+-- Example result:
+-- PlayerID | Age | AgeGroup
+-- 1001     | 22  | Young
+-- 1002     | 29  | Adult
+-- 1003     | 41  | Senior
+
+-- Mini Project
+-- Business Question: Which game genres have high-engagement players,
+-- more than 500 players, and the highest average playtime?
+SELECT
+    GameGenre,
+    COUNT(*) AS Players,
+    ROUND(AVG(PlayTimeHours), 2) AS AvgPlaytime
+FROM player_statistics
+WHERE EngagementLevel = 'High'
+GROUP BY GameGenre
+HAVING COUNT(*) > 500
+ORDER BY AvgPlaytime DESC;
+
+-- This query combines WHERE, GROUP BY, AVG, COUNT, HAVING, and ORDER BY.

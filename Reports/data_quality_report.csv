@@ -1,0 +1,14 @@
+Column,Data Type,Missing Values,Unique Values
+PlayerID,int64,0,40034
+Age,int64,0,35
+Gender,str,0,2
+Location,str,0,4
+GameGenre,str,0,5
+PlayTimeHours,float64,0,25
+InGamePurchases,float64,0,2
+GameDifficulty,str,0,3
+SessionsPerWeek,int64,0,20
+AvgSessionDurationMinutes,int64,0,170
+PlayerLevel,int64,0,99
+AchievementsUnlocked,int64,0,50
+EngagementLevel,str,0,3

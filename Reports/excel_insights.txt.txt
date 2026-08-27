@@ -1,0 +1,50 @@
+GAMING PLAYER ANALYTICS
+EXCEL ANALYSIS INSIGHTS
+============================================
+
+1. PLAYER BASE
+
+Total Players:
+There are 40,034 unique player's in the dataset.
+
+
+2. PLAYER DEMOGRAPHICS
+The Average Player level is approximately 49.656.
+
+
+3. ENGAGEMENT
+
+Average Playtime:
+The average playtime of the player's are 12.024 Hrs.
+
+Average Sessions Per Week:
+An Average of 9 sessions are played by the player's in a week.
+
+
+4. ENGAGEMENT DISTRIBUTION
+
+Largest Engagement Category:
+Approximately 48% of the player's comes under Medium Engagement Level.
+
+
+5. GAME GENRE
+
+Genre With Most Players:
+The 'Action' Genre has the highest number of players = 8039.
+
+6. PLAYTIME AND ENGAGEMENT
+
+Highest Average Playtime Engagement Group:
+High-engagement players have the highest average playtime, suggesting that playtime is strongly associated with player engagement.
+
+
+7. MONETIZATION
+
+Overall Purchase Rate:
+Most Revenue is earned by 'Startergy' Genre with revenue around $1600.
+
+
+8. LOCATION
+
+Location With Most Players:
+Most number of player's are reportedly are from USA.

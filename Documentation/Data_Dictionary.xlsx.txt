@@ -1,0 +1,129 @@
+GAMING PLAYER ANALYTICS
+DATA DICTIONARY
+============================================
+
+1. PlayerID
+Unique identifier for each player.
+
+2. Age
+Age of the player.
+
+3. Gender
+Gender category of the player.
+
+4. Location
+Location/country associated with the player.
+
+5. GameGenre
+Genre of the game played by the player.
+
+6. PlayTimeHours
+Number of hours the player spends playing.
+
+7. SessionsPerWeek
+Number of gaming sessions per week.
+
+8. PlayerLevel
+Current level/progression of the player.
+
+9. InGamePurchases
+Indicates whether the player made an in-game purchase.
+0 = No purchase
+1 = Purchase
+
+10. EngagementLevel
+Player engagement category.
+Possible values:
+Low
+Medium
+High
+
+11. GameDifficulty
+Difficulty category of the game.
+Possible values:
+Easy
+Medium
+Hard
+
+This is a small but important Data Analyst skill.
+
+Let's divide them into groups.
+
+👤 Player information
+PlayerID
+Age
+Gender
+Location
+
+🎮 Game information
+GameGenre
+GameDifficulty
+PlayerLevel
+
+📈 Engagement information
+PlayTimeHours
+SessionsPerWeek
+EngagementLevel
+💰 Monetization
+InGamePurchases
+
+This helps us understand how the dataset relates to the business.
+
+Step 17 — Identify our important columns
+
+Not every column gets equal attention.
+
+For our project:
+
+⭐ Main columns
+GameGenre
+PlayTimeHours
+SessionsPerWeek
+EngagementLevel
+InGamePurchases
+Location
+
+Supporting columns
+Age
+PlayerLevel
+Gender
+GameDifficulty
+
+Identifier
+PlayerID
+
+This is a much simpler way to think about the dataset.
+
+GAMING PLAYER ANALYTICS
+BUSINESS QUESTIONS
+============================================
+
+PLAYER ANALYSIS
+
+1. How many players are in the dataset?
+
+2. What is the average age of players?
+
+3. Which locations have the most players?
+
+
+ENGAGEMENT ANALYSIS
+
+4. Which game genres have the most players?
+
+5. What is the average playtime?
+
+6. What is the average number of sessions per week?
+
+7. How are players distributed across Low, Medium,
+   and High engagement?
+
+8. Do highly engaged players have higher average
+   playtime?
+
+
+MONETIZATION ANALYSIS
+
+9. What percentage of players make in-game purchases?
+
+10. Which game genres have the highest purchase rate?

@@ -1,0 +1,378 @@
+Lesson 7
+
+Part 1 → Subqueries
+
+Part 2 → CTEs
+
+Part 3 → Window Functions
+
+Part 4 → Ranking
+
+Part 5 → Business Case Studies
+
+
+
+
+
+Part 1 — What is a Subquery?
+
+A subquery is simply a query inside another query.
+
+Think of it like this:
+
+Main Query
+
+     ▲
+
+uses
+
+     ▲
+
+Small Query
+
+The small query finds information.
+
+The main query uses that information.
+
+Example 1
+Business Question
+
+Find players whose level is above the average level.
+
+How would you do this?
+
+Step 1:
+
+Find average level.
+
+SELECT AVG(PlayerLevel)
+FROM player_statistics;
+
+Suppose the result is:
+
+49.68
+
+Now we need another query:
+
+SELECT *
+FROM player_statistics
+WHERE PlayerLevel > 49.68;
+
+Instead of running two queries, combine them.
+
+SELECT *
+
+FROM player_statistics
+
+WHERE PlayerLevel >
+
+(
+
+SELECT AVG(PlayerLevel)
+
+FROM player_statistics
+
+);
+
+This is your first subquery.
+
+Example 2
+Business Question
+
+Find players whose playtime is greater than the average playtime.
+
+SELECT *
+
+FROM player_statistics
+
+WHERE PlayTimeHours >
+
+(
+
+SELECT AVG(PlayTimeHours)
+
+FROM player_statistics
+
+);
+Part 2 — Common Table Expressions (CTEs)
+
+A CTE creates a temporary table that exists only while the query runs.
+
+Think of it as giving a result a name before using it.
+
+General syntax:
+
+WITH TableName AS
+(
+    SELECT ...
+)
+
+SELECT *
+FROM TableName;
+Example
+
+Create a list of only High Engagement players.
+
+WITH HighPlayers AS
+
+(
+
+SELECT *
+
+FROM player_statistics
+
+WHERE EngagementLevel='High'
+
+)
+
+SELECT *
+
+FROM HighPlayers;
+
+This makes complex queries much easier to read.
+
+Another Example
+
+Average playtime by genre.
+
+WITH GenreStats AS
+
+(
+
+SELECT
+
+GameGenre,
+
+AVG(PlayTimeHours) AS AvgPlaytime
+
+FROM player_statistics
+
+GROUP BY GameGenre
+
+)
+
+SELECT *
+
+FROM GenreStats
+
+ORDER BY AvgPlaytime DESC;
+
+Notice how much cleaner this looks than one huge query.
+
+Part 3 — Window Functions
+
+Window functions are one of the most powerful SQL features.
+
+Unlike GROUP BY, they do not collapse rows.
+
+They calculate values while keeping every row visible.
+
+ROW_NUMBER()
+
+Assigns a unique number.
+
+SELECT
+
+PlayerID,
+
+PlayerLevel,
+
+ROW_NUMBER()
+
+OVER
+
+(
+
+ORDER BY PlayerLevel DESC
+
+)
+
+AS RankNumber
+
+FROM player_statistics;
+
+Output:
+
+PlayerID	Level	RankNumber
+1054	100	1
+2045	99	2
+3011	99	3
+
+Even if two players have the same level, the row numbers are different.
+
+RANK()
+SELECT
+
+PlayerID,
+
+PlayerLevel,
+
+RANK()
+
+OVER
+
+(
+
+ORDER BY PlayerLevel DESC
+
+)
+
+AS PlayerRank
+
+FROM player_statistics;
+
+If two players tie:
+
+100
+
+100
+
+99
+
+Ranks become:
+
+1
+
+1
+
+3
+
+Notice that rank 2 is skipped.
+
+DENSE_RANK()
+SELECT
+
+PlayerID,
+
+PlayerLevel,
+
+DENSE_RANK()
+
+OVER
+
+(
+
+ORDER BY PlayerLevel DESC
+
+)
+
+AS PlayerRank
+
+FROM player_statistics;
+
+Now the ranks are:
+
+1
+
+1
+
+2
+
+No gaps.
+
+Which One Should You Use?
+Function	Best Use
+ROW_NUMBER()	Every row needs a unique position
+RANK()	Competition-style ranking
+DENSE_RANK()	Leaderboards without gaps
+
+Gaming companies often use ranking functions for player leaderboards.
+
+Part 4 — Real Business Case Study
+Business Question
+
+Show the Top 10 highest-level players.
+
+SELECT
+
+PlayerID,
+
+PlayerLevel,
+
+ROW_NUMBER()
+
+OVER
+
+(
+
+ORDER BY PlayerLevel DESC
+
+)
+
+AS Ranking
+
+FROM player_statistics
+
+LIMIT 10;
+Business Question
+
+Find the best-performing game genre.
+
+SELECT
+
+GameGenre,
+
+ROUND(AVG(PlayerLevel),2) AS AvgLevel
+
+FROM player_statistics
+
+GROUP BY GameGenre
+
+ORDER BY AvgLevel DESC;
+Business Question
+
+Which engagement level has the highest average playtime?
+
+SELECT
+
+EngagementLevel,
+
+ROUND(AVG(PlayTimeHours),2) AS AvgPlaytime
+
+FROM player_statistics
+
+GROUP BY EngagementLevel
+
+ORDER BY AvgPlaytime DESC;
+Business Question
+
+Which location has the most high-engagement players?
+
+SELECT
+
+Location,
+
+COUNT(*) AS Players
+
+FROM player_statistics
+
+WHERE EngagementLevel='High'
+
+GROUP BY Location
+
+ORDER BY Players DESC;
+Part 5 — Interview Questions
+Q1
+
+Difference between RANK() and DENSE_RANK()?
+
+Answer:
+
+RANK() skips numbers after ties.
+DENSE_RANK() does not.
+Q2
+
+Why use a CTE?
+
+Answer:
+
+Makes complex SQL easier to read.
+Reuses intermediate results.
+Improves query organization.
+Q3
+
+Why use a Subquery?
+
+Answer:
+
+To use the result of one query inside another query

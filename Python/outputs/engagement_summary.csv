@@ -1,0 +1,4 @@
+,PlayTimeHours,SessionsPerWeek,PlayerLevel
+min,0.0,0.0,1.0
+max,24.0,19.0,99.0
+mean,12.028425838037668,9.471773992106709,49.65556776739771
