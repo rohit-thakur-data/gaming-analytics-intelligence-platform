@@ -118,10 +118,9 @@ Power BI Dashboard
 Streamlit Application
         ↓
 Insights & Business Recommendations
-
+```
 
 ---
-
 
 ## 📈 Key KPIs
 
@@ -185,33 +184,31 @@ Based on the analysis:
 
 ### Power BI Dashboard
 
-![Power BI Dashboard](Images/powerbi_dashboard.png)
+![Power BI Dashboard](./Images/powerbi_dashboard.png)
 
 ### Power BI Analysis
 
-![Power BI Analysis](Images/powerbi_analysis.png)
+![Power BI Analysis](./Images/powerbi_analysis.png)
 
 ### Streamlit Application
 
-![Streamlit Dashboard](Images/streamlit_dashboard.png)
+![Streamlit Dashboard](./Images/streamlit_dashboard.png)
 
 ### Streamlit Analysis
 
-![Streamlit Analysis](Images/streamlit_analysis.png)
+![Streamlit Analysis](./Images/streamlit_analysis.png)
 
 ### Gaming Analytics Chatbot
 
-![Gaming Analytics Chatbot](Images/chatbot.png)
-
+![Gaming Analytics Chatbot](./Images/chatbot.png)
 
 ---
 
-
 ## 📁 Project Structure
 
+```text
 GAMING ANALYTICS INTELLIGENCE PLATFORM/
-│
-├── DATA/
+├── Data/
 ├── Documentation/
 ├── Excel/
 ├── Images/
@@ -222,11 +219,11 @@ GAMING ANALYTICS INTELLIGENCE PLATFORM/
 ├── Streamlit_app/
 ├── .gitignore
 ├── README.md
-└── requirements.txt
-
+├── requirements.txt
+└── .git/
+```
 
 ---
-
 
 ## ▶️ How to Run
 
@@ -235,33 +232,40 @@ GAMING ANALYTICS INTELLIGENCE PLATFORM/
 ```bash
 git clone https://github.com/rohit-thakur-data/gaming-analytics-intelligence-platform.git
 cd "GAMING ANALYTICS INTELLIGENCE PLATFORM"
+```
 
-### 2. Create a Virtual Enviroment
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
+```
 
-### 3. Activate the Virtual Enviroment
+### 3. Activate the Virtual Environment
 
-       WindowsPowerShell
-       ```PowerShell
-       .\.venv\Scripts\Activate.ps1
+Windows PowerShell:
 
-       Windows Command Prompt
-       ```cmd
-       .venv\Scripts\activate.bat
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Windows Command Prompt:
+
+```cmd
+.venv\Scripts\activate.bat
+```
 
 ### 4. Install Requirements
 
 ```bash
 python -m pip install -r requirements.txt
+```
 
 ### 5. Run Streamlit
 
 ```bash
 cd Streamlit_app
 python -m streamlit run app.py
-
+```
 
 ---
 
