@@ -1,4 +1,3 @@
-```markdown
 # 🎮 Gaming Analytics Intelligence Platform
 
 An end-to-end gaming analytics project that analyzes player behavior, engagement, gameplay activity, progression, game genres, and purchasing patterns using Excel, SQL, Python, Power BI, and Streamlit.
@@ -116,9 +115,8 @@ Python / Pandas
 Power BI Dashboard
         ↓
 Streamlit Application
-        ↓
+    ↓
 Insights & Business Recommendations
-```
 
 ---
 
