@@ -115,8 +115,9 @@ Python / Pandas
 Power BI Dashboard
         ↓
 Streamlit Application
-    ↓
+        ↓
 Insights & Business Recommendations
+```
 
 ---
 
