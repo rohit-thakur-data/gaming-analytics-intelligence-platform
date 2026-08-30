@@ -233,7 +233,7 @@ GAMING ANALYTICS INTELLIGENCE PLATFORM/
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/rohit-thakur-data/gaming-analytics-intelligence-platform.git
 cd "GAMING ANALYTICS INTELLIGENCE PLATFORM"
 
 ### 2. Create a Virtual Enviroment
